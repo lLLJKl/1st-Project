@@ -1,0 +1,45 @@
+/* src/components/MyPage/InfoItem.css */
+.itemContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon {
+    color: #8e8e8e;
+    font-size: 1.2rem;
+}
+
+.title {
+    color: #333;
+    font-size: 14px;
+}
+
+.content {
+    margin-left: 10px;
+    font-weight: 600;
+    color: #555;
+}
+
+.editBtn {
+    border: 1px solid #dcdcdc;
+    background-color: white;
+    color: #666;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.editBtn:hover {
+    background-color: #f8f9fa;
+}

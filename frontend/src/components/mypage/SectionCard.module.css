@@ -1,0 +1,30 @@
+/* src/components/MyPage/SectionCard.module.css */
+.cardContainer {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.header {
+    background-color: #1e293b;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header h6 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+}

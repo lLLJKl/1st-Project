@@ -1,0 +1,31 @@
+/* src/components/Sidebar/Sidebar.css */
+
+.sidebar-container {
+    background-color: white;
+    min-height: 100vh;
+    border-right: 1px solid #e3e3e3;
+}
+
+.profile-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    margin: 30px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-menu-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.nav-menu-item.active {
+    color: #03c75a;
+    font-weight: bold;
+}
