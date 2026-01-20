@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className="sidebar d-flex flex-column p-3">
-      <h5 className="fw-bold mb-4">🌿 ESG 플랫폼</h5>
+        <h5 className="fw-bold mb-4">🌿 ESG 플랫폼</h5>
 
       <Nav className="flex-column gap-1 mb-3">
         <Nav.Link as={NavLink} to="/" end>📊 대시보드</Nav.Link>
