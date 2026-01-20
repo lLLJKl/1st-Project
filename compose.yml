@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mariadb:12.1.2
+    container_name: db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MARIADB_DATABASE=prj
+      - MARIADB_ROOT_PASSWORD=1234
+      - MARIADB_USER=study
+      - MARIADB_PASSWORD=study
+      - TZ=Asia/Seoul
+      - LC_ALL:en_US.UTF-88
+    volumes:
+      - ./database/conf.d:/etc/mysql/conf.d:ro
+      - ./database/data:/var/lib/mysql:rw
+      - ./database/initdb.d:/docker-entrypoint-initdb.d:ro
+    
+
+  #backend:
+  #  container_name: backend
+
+  #frontend:
+  #  container_name: frontend
