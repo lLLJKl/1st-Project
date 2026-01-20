@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
-import KpiCard from "../components/KpiCard";
-import ProjectList from "../components/ProjectList";
-import AddProjectButton from "../components/AddProjectButton";
+import KpiCard from "@/components/KpiCard";
+import ProjectList from "@/components/ProjectList";
+import AddProjectButton from "@/components/AddProjectButton";
+import { Tabs, Tab } from "react-bootstrap";
+
 
 const Home = () => {
   // 🔹 단일 데이터 소스
   const [projects, setProjects] = useState([
-    { id: 1, name: "공장 에너지 효율 개선", reduction: 1200 },
-    { id: 2, name: "태양광 설비 도입", reduction: 2300 }
-  ]);
+  { id: 1, name: "공장 에너지 효율 개선", reduction: 1200, status: "ongoing" },
+  { id: 2, name: "태양광 설비 도입", reduction: 2300, status: "completed" }
+]);
+  const [activeTab, setActiveTab] = useState("ongoing");
+  const filteredProjects = projects.filter(
+  p => p.status === activeTab
+);
+
 
   // 🔹 프로젝트 추가 로직
   const addProject = () => {
@@ -56,12 +63,25 @@ const Home = () => {
         <Col md={7}>
           <Card>
             <Card.Body>
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="d-flex justify-content-between align-items-center mb-2">
                 <h6 className="fw-bold mb-0">프로젝트 목록</h6>
                 <AddProjectButton onClick={addProject} />
               </div>
 
-              <ProjectList projects={projects} />
+              {/* 🔹 탭 영역 */}
+              <Tabs
+                activeKey={activeTab}
+                onSelect={(k) => setActiveTab(k)}
+                className="mb-3"
+              >
+                <Tab eventKey="ongoing" title="진행중">
+                  <ProjectList projects={filteredProjects} />
+                </Tab>
+
+                <Tab eventKey="completed" title="완료">
+                  <ProjectList projects={filteredProjects} />
+                </Tab>
+              </Tabs>
             </Card.Body>
           </Card>
         </Col>
