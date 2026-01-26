@@ -1,0 +1,35 @@
+body {
+  background-color: #f5f6fa;
+}
+
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #f7f5ff;
+}
+
+.sidebar .nav-link {
+  color: #555;
+  border-radius: 8px;
+}
+
+.sidebar .nav-link.active {
+  background: #e8e5ff;
+  font-weight: 600;
+}
+
+.topbar {
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.kpi-card {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+button.rounded-pill {
+  padding: 6px 14px;
+}
