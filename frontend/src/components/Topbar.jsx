@@ -31,7 +31,7 @@ const Topbar = () => {
           alt="user-avatar"
           className="rounded-circle border me-3"
           style={{ width: "34px", height: "34px", objectFit: "cover", cursor: "pointer" }}
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/mypage")}
         />
 
         
