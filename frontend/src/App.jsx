@@ -4,6 +4,9 @@ import Home from "@/pages/Home";
 import EnergyData from "@/pages/EnergyData";
 import EmissionData from "@/pages/EmissionData";
 import CostData from "@/pages/CostData";
+import Login from "@/pages/Login";
+import FindPassword from "@/pages/FindPassword";
+import MyPage from "@/pages/Mypage";
 
 
 function App() {
@@ -12,6 +15,9 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/find-password" element={<FindPassword />} />
+          <Route path="/mypage" element={<MyPage />} />
         {/* <Route path="/projects" element={<Projects />} /> */}
         {/* <Route path="/projects/new" element={<ProjectCreate />} /> */}
 
