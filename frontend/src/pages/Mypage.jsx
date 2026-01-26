@@ -29,12 +29,12 @@ const MyPage = () => {
 
       {/* 오른쪽 콘텐츠 */}
       <Col md={9}>
-        {/* 프로필 */}
+        {/* 회원관리 */}
         <Card className="mb-3">
-          <Card.Header className="fw-bold">프로필</Card.Header>
+          <Card.Header className="fw-bold">회원관리</Card.Header>
           <Card.Body>
             <Row className="mb-2">
-              <Col md={4} className="text-muted">이름</Col>
+              <Col md={4} className="text-muted">소속</Col>
               <Col md={6}>이정빈</Col>
               <Col md={2}>
                 <Button size="sm" variant="outline-secondary">수정</Button>
@@ -50,7 +50,47 @@ const MyPage = () => {
             </Row>
 
             <Row>
-              <Col md={4} className="text-muted">휴대폰</Col>
+              <Col md={4} className="text-muted">담당자 휴대폰</Col>
+              <Col md={6}>+82 10-****-****</Col>
+              <Col md={2}>
+                <Button size="sm" variant="outline-secondary">수정</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={4} className="text-muted">회원 권한 등급</Col>
+              <Col md={6}>platinum</Col>
+              <Col md={2}>
+                <Button size="sm" variant="outline-secondary">수정</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={4} className="text-muted">회원 탈퇴</Col>
+              <Col md={6}>할겨?</Col>
+              <Col md={2}>
+                <Button size="sm" variant="outline-secondary">수정</Button>
+              </Col>
+            </Row>
+            
+            <Row>
+              <Col md={4} className="text-muted">회원 권한 할당</Col>
+              <Col md={6}>최대 3명</Col>
+              <Col md={2}>
+                <Button size="sm" variant="outline-secondary">수정</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={4} className="text-muted">조직 생성</Col>
+              <Col md={6}>+82 10-****-****</Col>
+              <Col md={2}>
+                <Button size="sm" variant="outline-secondary">수정</Button>
+              </Col>
+            </Row>
+           
+            <Row>
+              <Col md={4} className="text-muted">조직 초대</Col>
               <Col md={6}>+82 10-****-****</Col>
               <Col md={2}>
                 <Button size="sm" variant="outline-secondary">수정</Button>
@@ -71,7 +111,7 @@ const MyPage = () => {
             </Row>
 
             <Row className="mb-2">
-              <Col md={8}>2단계 인증</Col>
+              <Col md={8}>2단계 비밀번호 설정</Col>
               <Col md={4} className="text-end">
                 <Button size="sm" variant="success">ON</Button>
               </Col>
@@ -98,14 +138,70 @@ const MyPage = () => {
             </Row>
 
             <Row>
-              <Col md={8}>업로드 했던 서류,자료</Col>
+              <Col md={8}>업로드 했던 서류 목록</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">관리</Button>
+              </Col>
+            </Row>
+
+            <Row className="mb-2">
+              <Col md={8}>해당자료 다운로드</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">확인</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={8}>나의 ESG현황</Col>
               <Col md={4} className="text-end">
                 <Button size="sm" variant="outline-secondary">관리</Button>
               </Col>
             </Row>
           </Card.Body>
         </Card>
-      </Col>
+
+        {/* 환경설정 */}
+        <Card>
+          <Card.Header className="fw-bold">환경설정</Card.Header>
+          <Card.Body>
+            <Row className="mb-2">
+              <Col md={8}>알림기능 ON/OFF</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">확인</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={8}>언어 설정</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">관리</Button>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+
+        {/* 구독관리 */}
+        <Card>
+          <Card.Header className="fw-bold">멤버십 현황</Card.Header>
+          <Card.Body>
+            <Row className="mb-2">
+              <Col md={8}>멤버쉽 현황</Col>
+              <Col md={8}>멤버쉽 업그레이드</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">확인</Button>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={8}>결재관리 시스템</Col>
+              <Col md={4} className="text-end">
+                <Button size="sm" variant="outline-secondary">관리</Button>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+
+       </Col>
     </Row>
   );
 };
