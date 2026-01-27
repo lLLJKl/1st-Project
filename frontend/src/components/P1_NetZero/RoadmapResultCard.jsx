@@ -12,9 +12,6 @@ const RoadmapResultCard = ({ method, rows }) => {
     <Card className="shadow-sm">
       <Card.Body>
         <Card.Title className="fw-bold mb-1">결과</Card.Title>
-        <div className="text-muted small mb-3">
-          BAU / Goal / Net을 분리해서 보여줍니다. (차트는 TODO)
-        </div>
 
         {/* 요약 */}
         {last && (

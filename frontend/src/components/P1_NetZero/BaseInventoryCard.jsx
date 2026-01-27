@@ -15,7 +15,6 @@ const BaseInventoryCard = ({
       <Card.Body>
         <Card.Title className="fw-bold mb-1">기준연도 배출량</Card.Title>
         <div className="text-muted small mb-3">
-          이 값이 모든 감축/전망 계산의 출발점입니다. (합계는 그래프/툴팁에서 표시)
         </div>
 
         {/* 1행: 기준연도 */}
@@ -61,9 +60,6 @@ const BaseInventoryCard = ({
               min={0}
               placeholder="(향후 연동 예정)"
             />
-            <div className="text-muted small mt-1">
-              * MVP에서는 입력만 받고 계산/그래프에는 아직 반영하지 않습니다.
-            </div>
           </Col>
         </Row>
       </Card.Body>

@@ -1,0 +1,35 @@
+/* ===== Bootstrap Form 안정화 (select 깨짐 방지) ===== */
+
+/* label만 살짝 정리 */
+.form-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+}
+
+/* input은 안전하게 min-height만 */
+.form-control {
+  min-height: 38px;
+}
+
+/* ✅ select는 min-height만 주고 line-height/padding은 건드리지 말 것 */
+.form-select {
+  min-height: 38px;
+}
+
+/* row가 좁아질 때 버튼 영역 줄바꿈 */
+.measures-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* switch는 한 줄 유지 */
+.form-check.form-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.form-check.form-switch .form-check-label {
+  white-space: nowrap;
+}
