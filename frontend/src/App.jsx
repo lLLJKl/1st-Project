@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout";
 import Home from "@/pages/Home";
-import P1_NetZeroRoad from "@pages/P1_NetZeroRoad.jsx";
+import P1_NetZeroRoad from "@pages/project/P1_NetZeroRoad.jsx";
 
 
 function App() {

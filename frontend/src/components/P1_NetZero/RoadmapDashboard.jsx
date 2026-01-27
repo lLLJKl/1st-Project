@@ -1,13 +1,40 @@
-import { Card, Form, Table } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
+import {
+  ResponsiveContainer,
+  ComposedChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Bar,
+  Line,
+} from "recharts";
 
-const format = (n) => (n == null ? "-" : Math.round(n).toLocaleString("ko-KR"));
+const fmt = (n) => (n == null ? "-" : Math.round(n).toLocaleString("ko-KR"));
+
+function CustomTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+
+  const row = payload[0]?.payload;
+  return (
+    <div className="bg-white border rounded p-2" style={{ minWidth: 220 }}>
+      <div className="fw-bold mb-1">{label}년</div>
+      <div className="small">Goal Scope1: {fmt(row.goal_s1)} tCO₂e</div>
+      <div className="small">Goal Scope2: {fmt(row.goal_s2)} tCO₂e</div>
+      <div className="small">Goal Scope3: {fmt(row.goal_s3)} tCO₂e</div>
+      <div className="small fw-semibold mt-1">Goal 합계: {fmt(row.goal_total)} tCO₂e</div>
+      <hr className="my-2" />
+      <div className="small fw-semibold">실제/예상(BAU): {fmt(row.bau_total)} tCO₂e</div>
+    </div>
+  );
+}
 
 const RoadmapDashboard = ({ rows, selectedYear, setSelectedYear }) => {
-  // rows: [{year, bau_emissions, goal_emissions, net_emissions ...}]
   const years = rows?.map((r) => r.year) ?? [];
   const lastYear = years[years.length - 1];
-  const currentYear = selectedYear ?? lastYear;
 
+  const currentYear = selectedYear ?? lastYear;
   const current = rows?.find((r) => r.year === Number(currentYear));
 
   return (
@@ -16,7 +43,9 @@ const RoadmapDashboard = ({ rows, selectedYear, setSelectedYear }) => {
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div>
             <Card.Title className="fw-bold mb-1">탄소중립 로드맵</Card.Title>
-            <div className="text-muted small">막대 차트 영역 (TODO: 차트 라이브러리 연결)</div>
+            <div className="text-muted small">
+              막대=목표(Goal, Scope별) / 선=실제·예상 배출량(BAU)
+            </div>
           </div>
 
           <div style={{ width: 140 }}>
@@ -34,63 +63,44 @@ const RoadmapDashboard = ({ rows, selectedYear, setSelectedYear }) => {
           </div>
         </div>
 
-        {/* ✅ 차트 자리(지금은 박스만) */}
-        <div
-          className="border rounded bg-light"
-          style={{ height: 360, display: "flex", alignItems: "center", justifyContent: "center" }}
-        >
-          <div className="text-muted">
-            Bar Chart Placeholder
-            <div className="small mt-1">TODO: Recharts/Chart.js로 스택 막대 차트 구현</div>
-          </div>
+        {/* 차트 */}
+        <div style={{ width: "100%", height: 380 }}>
+          <ResponsiveContainer>
+            <ComposedChart data={rows} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="year" />
+              <YAxis tickFormatter={(v) => fmt(v)} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+
+              {/* 막대(목표): Scope1/2/3 스택 */}
+              <Bar dataKey="goal_s1" stackId="goal" name="목표 Scope1" />
+              <Bar dataKey="goal_s2" stackId="goal" name="목표 Scope2" />
+              <Bar dataKey="goal_s3" stackId="goal" name="목표 Scope3(예비)" />
+
+              {/* 선(실제/예상): BAU 총배출 */}
+              <Line type="monotone" dataKey="bau_total" name="실제/예상 배출량(BAU)" dot={false} />
+            </ComposedChart>
+          </ResponsiveContainer>
         </div>
 
-        {/* ✅ 선택 연도 요약 */}
+        {/* 선택 연도 요약 */}
         <div className="mt-3 d-flex gap-4 flex-wrap">
           <div>
             <div className="small text-muted">선택 연도</div>
             <div className="fw-semibold">{current?.year ?? "-"}</div>
           </div>
           <div>
-            <div className="small text-muted">BAU</div>
-            <div className="fw-semibold">{format(current?.bau_emissions)} tCO₂e</div>
+            <div className="small text-muted">Goal 합계</div>
+            <div className="fw-semibold">{fmt(current?.goal_total)} tCO₂e</div>
           </div>
           <div>
-            <div className="small text-muted">Goal</div>
-            <div className="fw-semibold">{format(current?.goal_emissions)} tCO₂e</div>
-          </div>
-          <div>
-            <div className="small text-muted">Net</div>
-            <div className="fw-semibold">{format(current?.net_emissions)} tCO₂e</div>
+            <div className="small text-muted">실제/예상(BAU)</div>
+            <div className="fw-semibold">{fmt(current?.bau_total)} tCO₂e</div>
           </div>
         </div>
 
-        {/* ✅ 하단 간단 표(차트 전 단계에서 유용) */}
-        <div className="mt-3">
-          <Table responsive bordered size="sm" className="mb-0">
-            <thead className="table-light">
-              <tr>
-                <th style={{ width: 90 }}>연도</th>
-                <th>BAU</th>
-                <th>Goal</th>
-                <th>Net</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(rows ?? []).slice(0, 12).map((r) => (
-                <tr key={r.year}>
-                  <td>{r.year}</td>
-                  <td>{format(r.bau_emissions)}</td>
-                  <td>{format(r.goal_emissions)}</td>
-                  <td>{format(r.net_emissions)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          <div className="text-muted small mt-2">
-            (MVP) 표는 일부 연도만 표시. TODO: pagination 또는 스크롤
-          </div>
-        </div>
+        {/* TODO: 표는 기존 표 컴포넌트 유지하거나, 아래에 스크롤 테이블로 재배치 */}
       </Card.Body>
     </Card>
   );

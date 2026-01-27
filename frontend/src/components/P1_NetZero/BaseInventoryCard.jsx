@@ -7,18 +7,20 @@ const BaseInventoryCard = ({
   setScope1,
   scope2,
   setScope2,
-  baseEmissions,
+  scope3,
+  setScope3,
 }) => {
   return (
     <Card className="shadow-sm">
       <Card.Body>
         <Card.Title className="fw-bold mb-1">기준연도 배출량</Card.Title>
         <div className="text-muted small mb-3">
-          이 값이 모든 감축 계산의 출발점입니다.
+          이 값이 모든 감축/전망 계산의 출발점입니다. (합계는 그래프/툴팁에서 표시)
         </div>
 
+        {/* 1행: 기준연도 */}
         <Row className="g-3">
-          <Col md={4}>
+          <Col>
             <Form.Label className="small text-muted">기준연도</Form.Label>
             <Form.Control
               type="number"
@@ -26,13 +28,17 @@ const BaseInventoryCard = ({
               onChange={(e) => setBaseYear(Number(e.target.value))}
             />
           </Col>
+        </Row>
 
+        {/* 2행: Scope1/2/3 */}
+        <Row className="g-3 mt-1">
           <Col md={4}>
             <Form.Label className="small text-muted">Scope1 (tCO₂e)</Form.Label>
             <Form.Control
               type="number"
               value={scope1}
               onChange={(e) => setScope1(Number(e.target.value))}
+              min={0}
             />
           </Col>
 
@@ -42,14 +48,22 @@ const BaseInventoryCard = ({
               type="number"
               value={scope2}
               onChange={(e) => setScope2(Number(e.target.value))}
+              min={0}
             />
           </Col>
-        </Row>
 
-        <Row className="g-3 mt-2">
           <Col md={4}>
-            <Form.Label className="small text-muted">합계(Scope1+2)</Form.Label>
-            <Form.Control type="number" value={baseEmissions} readOnly />
+            <Form.Label className="small text-muted">Scope3 (tCO₂e)</Form.Label>
+            <Form.Control
+              type="number"
+              value={scope3}
+              onChange={(e) => setScope3(Number(e.target.value))}
+              min={0}
+              placeholder="(향후 연동 예정)"
+            />
+            <div className="text-muted small mt-1">
+              * MVP에서는 입력만 받고 계산/그래프에는 아직 반영하지 않습니다.
+            </div>
           </Col>
         </Row>
       </Card.Body>
