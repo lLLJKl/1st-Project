@@ -3,11 +3,13 @@ import { Row, Col, Card } from "react-bootstrap";
 import KpiCard from "@/components/KpiCard";
 import ProjectList from "@/components/ProjectList";
 import AddProjectButton from "@/components/AddProjectButton";
-
 import { Tabs, Tab } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 const Mainp = () => {
+
+  const nav = useNavigate()
   // 🔹 단일 데이터 소스
   const [projects, setProjects] = useState([
   { id: 1, name: "공장 에너지 효율 개선", reduction: 1200, status: "ongoing" },
@@ -30,6 +32,10 @@ const Mainp = () => {
       }
     ]);
   };
+
+  const goprj = () => {
+    nav(`/projects/roadmap`)
+  } 
 
   // 🔹 KPI 계산
   const totalReduction = projects.reduce(
@@ -77,6 +83,10 @@ const Mainp = () => {
               >
                 <Tab eventKey="ongoing" title="진행중">
                   <ProjectList projects={filteredProjects} />
+                  <button variant="primary" className="w-100 py-2" onClick={goprj}>
+                   탄소중립로드맵
+                  </button>
+
                 </Tab>
 
                 <Tab eventKey="completed" title="완료">

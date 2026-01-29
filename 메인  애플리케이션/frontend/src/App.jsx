@@ -20,7 +20,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/main" element={<Mainp />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/projects/:projectId/roadmap" element={<P1_NetZeroRoad />} />
+          <Route path="/projects/roadmap" element={<P1_NetZeroRoad />} />
         {/* <Route path="/projects" element={<Projects />} /> */}
         {/* <Route path="/projects/new" element={<ProjectCreate />} /> */}
 
