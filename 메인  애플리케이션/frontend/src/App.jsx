@@ -8,6 +8,7 @@ import CostData from "@/pages/CostData";
 import Signin from "@/pages/Signin";
 import MyPage from "@/pages/Mypage";
 import Signup from "@/pages/SignUp";
+import P1_NetZeroRoad from "@/pages/project/P1_NetZeroRoad.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/main" element={<Mainp />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/projects/:projectId/roadmap" element={<P1_NetZeroRoad />} />
         {/* <Route path="/projects" element={<Projects />} /> */}
         {/* <Route path="/projects/new" element={<ProjectCreate />} /> */}
 
